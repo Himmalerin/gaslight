@@ -1,10 +1,15 @@
 import {Client, CommandInteraction, MessageActionRow, MessageButton} from "discord.js";
 import {MessageButtonStyles} from "discord.js/typings/enums";
+import {inviteLink} from "../../../config.json"
 
 export const info: Function = async (client: Client, interaction: CommandInteraction): Promise<void> => {
     try {
         const row = new MessageActionRow()
             .addComponents(
+                new MessageButton()
+                    .setStyle(MessageButtonStyles.LINK)
+                    .setURL(inviteLink)
+                    .setLabel("Invite link"),
                 new MessageButton()
                     .setStyle(MessageButtonStyles.LINK)
                     .setURL("https://github.com/himmalerin/gaslight")
