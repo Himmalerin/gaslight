@@ -3,7 +3,7 @@ import {ApplicationCommandOptionTypes, ApplicationCommandTypes} from "discord.js
 import {SubCommands} from "./reminder";
 import {Command} from "../typings/interfaces";
 
-export const reminder: Command = {
+export const Reminder: Command = {
     name: "reminder",
     description: "Add, remove, or edit a reminder.",
     type: ApplicationCommandTypes.CHAT_INPUT,

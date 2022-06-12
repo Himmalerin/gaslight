@@ -3,8 +3,8 @@ import {ApplicationCommandTypes, MessageButtonStyles} from "discord.js/typings/e
 import {Command} from "../typings/interfaces";
 import {inviteLink} from "../../config.json";
 
-export const info: Command = {
-    name: "bot",
+export const Info: Command = {
+    name: "info",
     description: "Information about the bot.",
     type: ApplicationCommandTypes.CHAT_INPUT,
     run: async (client: Client, interaction: CommandInteraction): Promise<void> => {
