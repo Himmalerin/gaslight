@@ -1,4 +1,7 @@
 {
   "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-  "inviteLink": "https://discord.com/oauth2/authorize"
+  "inviteLink": {
+    "show": false,
+    "url": "https://discord.com/xxxxxxxxxxxxxxxxxx"
+  }
 }
