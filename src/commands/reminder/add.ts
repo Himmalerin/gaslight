@@ -67,6 +67,7 @@ export const add: Function = async (client: Client, interaction: CommandInteract
         await interaction.reply({
             content: interactionReplyContent,
             ephemeral: isPrivate,
+            allowedMentions: {parse: []},
         });
 
     } catch (e) {

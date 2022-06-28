@@ -31,7 +31,7 @@ const sendDMReminder: Function = async (client: Client, reminder: Reminder, time
     try {
         const dmChannel = await client.users.createDM(reminder.owner_id);
 
-        await dmChannel.send(`<t:${timestamp}:R> <@${reminder.owner_id}> set a reminder: ${reminder.message}`);
+        await dmChannel.send(`<t:${timestamp}:R> you set a reminder: ${reminder.message}`);
     } catch (e) {
         console.error(e);
     }
@@ -41,7 +41,10 @@ const sendChannelReminder: Function = async (client: Client, reminder: Reminder,
     try {
         const channel: TextChannel = client.channels.cache.get(reminder.channel_id) as TextChannel;
 
-        await channel.send(`<t:${timestamp}:R> <@${reminder.owner_id}> set a reminder: ${reminder.message}`);
+        await channel.send({
+            content: `<t:${timestamp}:R> <@${reminder.owner_id}> set a reminder: ${reminder.message}`,
+            allowedMentions: {users: [reminder.owner_id]},
+        });
     } catch (e) {
         console.error(e);
     }
