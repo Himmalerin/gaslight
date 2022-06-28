@@ -23,14 +23,7 @@ export const add: Function = async (client: Client, interaction: CommandInteract
     const unitOfTime: string = time.split(" ")[1];
 
     try {
-        const parsedTime: Date | boolean = parseTime(lengthOfTime, unitOfTime);
-
-        // Typescript doesn't like us checking specifically for false because it could still equal true, so check if
-        // it's a boolean instead.
-        if (typeof parsedTime === "boolean") {
-            await interaction.reply(`\`${time}\` isn't a valid time.`);
-            return;
-        }
+        const parsedTime: Date = parseTime(lengthOfTime, unitOfTime);
 
         // If the parsed time is less than the current time then the reminder was set in the past and is invalid.
         // This should never happen, but just to be sure.
@@ -65,10 +58,10 @@ export const add: Function = async (client: Client, interaction: CommandInteract
         const timestamp: number = Math.floor(parsedTime.getTime() / 1000);
         const truncatedMessage: string = truncateString(message);
 
-        let interactionReplyContent: string = `[\`${reminderId}\`] - <t:${timestamp}:R> you'll be reminded about "${truncatedMessage}"`
+        let interactionReplyContent: string = `[\`${reminderId}\`] - <t:${timestamp}:R> you'll be reminded about "${truncatedMessage}"`;
 
         if (isPrivate) {
-            interactionReplyContent += `\nThis is a private reminder.  You must be able to recieve DMs from this bot to be reminded.`
+            interactionReplyContent += `\nThis is a private reminder.  You must be able to recieve DMs from this bot to be reminded.`;
         }
 
         await interaction.reply({
@@ -77,6 +70,11 @@ export const add: Function = async (client: Client, interaction: CommandInteract
         });
 
     } catch (e) {
+        if (e === "invalid time") {
+            await interaction.reply(`\`${time}\` isn't a valid time.`);
+            return;
+        }
+
         await interaction.reply(`Something went wrong (\`${e}\`)`);
 
         console.error(e);

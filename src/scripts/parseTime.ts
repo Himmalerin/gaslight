@@ -1,6 +1,6 @@
-import {TimesUnits, TimesInMilliseconds} from "../typings/enums";
+import {TimesInMilliseconds, TimesUnits} from "../typings/enums";
 
-export const parseTime: Function = (lengthOfTime: number, unitOfTime: string): Date | boolean => {
+export const parseTime: Function = (lengthOfTime: number, unitOfTime: string): Date => {
     if (unitOfTime.startsWith(TimesUnits.Year)) {
         const additionalTime: number = lengthOfTime * TimesInMilliseconds.Year;
 
@@ -26,6 +26,6 @@ export const parseTime: Function = (lengthOfTime: number, unitOfTime: string): D
 
         return new Date(Date.now() + additionalTime);
     } else {
-        return false;
+        throw "invalid time";
     }
 };
