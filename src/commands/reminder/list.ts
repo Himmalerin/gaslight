@@ -4,6 +4,8 @@ import {truncateString} from "../../scripts/utils";
 import {Reminder} from "../../typings/interfaces";
 
 const generateReminderList = (array: Array<Reminder>): Array<string> => {
+    array.sort((a, b) => a.due_at - b.due_at);
+
     return array.map((reminder: Reminder) => {
         const timestamp: number = Math.floor(reminder.due_at / 1000);
         const truncatedMessage: string = truncateString(reminder.message);
