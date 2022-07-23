@@ -1,25 +1,31 @@
-import {Client, CommandInteraction, MessageActionRow, MessageButton} from "discord.js";
-import {ApplicationCommandTypes, MessageButtonStyles} from "discord.js/typings/enums";
+import {
+    ActionRowBuilder,
+    ApplicationCommandType,
+    ButtonBuilder,
+    ButtonStyle,
+    Client,
+    CommandInteraction,
+} from "discord.js";
 import {Command} from "../typings/interfaces";
 import {inviteLink} from "../../config.json";
 
 export const Info: Command = {
     name: "info",
     description: "Information about the bot.",
-    type: ApplicationCommandTypes.CHAT_INPUT,
+    type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction): Promise<void> => {
         try {
-            const row = new MessageActionRow();
+            const row = new ActionRowBuilder() as ActionRowBuilder<ButtonBuilder>;
 
             if (inviteLink.show) {
-                row.addComponents(new MessageButton()
-                    .setStyle(MessageButtonStyles.LINK)
+                row.addComponents(new ButtonBuilder()
+                    .setStyle(ButtonStyle.Link)
                     .setURL(inviteLink.url)
                     .setLabel("Invite link"));
             }
 
-            row.addComponents(new MessageButton()
-                .setStyle(MessageButtonStyles.LINK)
+            row.addComponents(new ButtonBuilder()
+                .setStyle(ButtonStyle.Link)
                 .setURL("https://github.com/himmalerin/gaslight")
                 .setLabel("Source code"));
 

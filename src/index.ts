@@ -1,4 +1,4 @@
-import {Client, Collection, Intents} from "discord.js";
+import {Client, Collection, GatewayIntentBits} from "discord.js";
 import {randomInt} from "crypto";
 import {getReminders} from "./scripts/databaseActions";
 import {scheduleReminder} from "./scripts/scheduleReminder";
@@ -9,11 +9,7 @@ import {token} from "../config.json";
 
 const client: Client = new Client({
     intents: [
-        Intents.FLAGS.GUILDS,
-    ],
-    partials: [
-        "MESSAGE",
-        "REACTION",
+        GatewayIntentBits.GuildMessages,
     ],
 });
 

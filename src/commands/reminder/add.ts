@@ -1,4 +1,4 @@
-import {Client, CommandInteraction} from "discord.js";
+import {ChatInputCommandInteraction, Client} from "discord.js";
 import {randomBytes} from "crypto";
 import {addReminder, addUser, getUserById} from "../../scripts/databaseActions";
 import {parseTime} from "../../scripts/parseTime";
@@ -6,7 +6,7 @@ import {scheduleReminder} from "../../scripts/scheduleReminder";
 import {truncateString} from "../../scripts/utils";
 import {Reminder, User} from "../../typings/interfaces";
 
-export const add: Function = async (client: Client, interaction: CommandInteraction): Promise<void> => {
+export const add: Function = async (client: Client, interaction: ChatInputCommandInteraction): Promise<void> => {
     const time: string = interaction.options.getString("time");
     const message: string = interaction.options.getString("message");
     const isPrivate: boolean = interaction.options.getBoolean("private");

@@ -1,32 +1,31 @@
-import {Client, CommandInteraction} from "discord.js";
-import {ApplicationCommandOptionTypes, ApplicationCommandTypes} from "discord.js/typings/enums";
+import {ApplicationCommandOptionType, ApplicationCommandType, ChatInputCommandInteraction, Client} from "discord.js";
 import {SubCommands} from "./reminder";
 import {Command} from "../typings/interfaces";
 
 export const Reminder: Command = {
     name: "reminder",
     description: "Add, remove, or edit a reminder.",
-    type: ApplicationCommandTypes.CHAT_INPUT,
+    type: ApplicationCommandType.ChatInput,
     options: [
         {
-            type: ApplicationCommandOptionTypes.SUB_COMMAND,
+            type: ApplicationCommandOptionType.Subcommand,
             name: "add",
             description: "Add a new reminder.",
             options: [
                 {
-                    type: ApplicationCommandOptionTypes.STRING,
+                    type: ApplicationCommandOptionType.String,
                     name: "time",
                     description: "When you want to be reminded.",
                     required: true,
                 },
                 {
-                    type: ApplicationCommandOptionTypes.STRING,
+                    type: ApplicationCommandOptionType.String,
                     name: "message",
                     description: "What you want to be reminded about.",
                     required: true,
                 },
                 {
-                    type: ApplicationCommandOptionTypes.BOOLEAN,
+                    type: ApplicationCommandOptionType.Boolean,
                     name: "private",
                     description: "Whether or not the reminder should sent privately via DM.",
                     required: false,
@@ -34,12 +33,12 @@ export const Reminder: Command = {
             ],
         },
         {
-            type: ApplicationCommandOptionTypes.SUB_COMMAND,
+            type: ApplicationCommandOptionType.Subcommand,
             name: "remove",
             description: "Remove an existing reminder by its ID.",
             options: [
                 {
-                    type: ApplicationCommandOptionTypes.STRING,
+                    type: ApplicationCommandOptionType.String,
                     name: "id",
                     description: "ID of the reminder that should be removed.",
                     required: true,
@@ -47,24 +46,24 @@ export const Reminder: Command = {
             ],
         },
         {
-            type: ApplicationCommandOptionTypes.SUB_COMMAND,
+            type: ApplicationCommandOptionType.Subcommand,
             name: "list",
             description: "View your active reminders.",
             options: [
                 {
-                    type: ApplicationCommandOptionTypes.BOOLEAN,
+                    type: ApplicationCommandOptionType.Boolean,
                     name: "private",
                     description: "Whether or not private reminders should be shown.  List will be hidden from others if true.",
                 },
             ],
         },
         {
-            type: ApplicationCommandOptionTypes.SUB_COMMAND,
+            type: ApplicationCommandOptionType.Subcommand,
             name: "help",
             description: "Get some help with reminders.",
         },
     ],
-    run: async (client: Client, interaction: CommandInteraction): Promise<void> => {
+    run: async (client: Client, interaction: ChatInputCommandInteraction): Promise<void> => {
         const subCommand: string = interaction.options.getSubcommand();
 
         const command: Function = SubCommands.find((command) => {

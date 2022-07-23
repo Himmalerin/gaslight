@@ -1,10 +1,10 @@
-import {Client, CommandInteraction, Interaction} from "discord.js";
+import {Client, CommandInteraction, Interaction, InteractionType} from "discord.js";
 import {Commands} from "../commands";
 import {Command} from "../typings/interfaces";
 
 export const interactionCreate: Function = (client: Client): void => {
     client.on("interactionCreate", async (interaction: Interaction): Promise<void> => {
-        if (interaction.isCommand()) {
+        if (interaction.type === InteractionType.ApplicationCommand) {
             await handleSlashCommand(client, interaction);
             return;
         }

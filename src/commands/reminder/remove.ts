@@ -1,8 +1,8 @@
-import {Client, CommandInteraction} from "discord.js";
+import {ChatInputCommandInteraction, Client} from "discord.js";
 import {getReminderById, removeReminder} from "../../scripts/databaseActions";
 import {Reminder} from "../../typings/interfaces";
 
-export const remove: Function = async (client: Client, interaction: CommandInteraction): Promise<void> => {
+export const remove: Function = async (client: Client, interaction: ChatInputCommandInteraction): Promise<void> => {
     const id: string = interaction.options.getString("id");
 
     // The id must be six characters long and can only contain lowercase letters a-f and numbers 0-9.

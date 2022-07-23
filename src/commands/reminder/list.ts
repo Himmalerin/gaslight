@@ -1,4 +1,4 @@
-import {Client, CommandInteraction, GuildMember} from "discord.js";
+import {ChatInputCommandInteraction, Client, GuildMember} from "discord.js";
 import {getReminderByOwnerId} from "../../scripts/databaseActions";
 import {truncateString} from "../../scripts/utils";
 import {Reminder} from "../../typings/interfaces";
@@ -13,7 +13,7 @@ const generateReminderList = (array: Array<Reminder>): Array<string> => {
     });
 };
 
-export const list: Function = async (client: Client, interaction: CommandInteraction): Promise<void> => {
+export const list: Function = async (client: Client, interaction: ChatInputCommandInteraction): Promise<void> => {
     const showPrivateReminders = interaction.options.getBoolean("private");
 
     try {

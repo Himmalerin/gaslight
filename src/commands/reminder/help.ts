@@ -1,7 +1,7 @@
-import {Client, CommandInteraction} from "discord.js";
+import {ChatInputCommandInteraction, Client} from "discord.js";
 import {TimesUnits} from "../../typings/enums";
 
-export const help: Function = async (client: Client, interaction: CommandInteraction): Promise<void> => {
+export const help: Function = async (client: Client, interaction: ChatInputCommandInteraction): Promise<void> => {
     try {
         const timeUnitsList = Object.values(TimesUnits).map((value) => `\`${value}\``);
 
