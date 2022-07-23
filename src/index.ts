@@ -9,7 +9,7 @@ import {token} from "../config.json";
 
 const client: Client = new Client({
     intents: [
-        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.Guilds,
     ],
 });
 
@@ -17,7 +17,7 @@ declare global {
     var __REMINDERS__: Collection<string, any>;
 }
 
-globalThis.__REMINDERS__ = new Collection()
+globalThis.__REMINDERS__ = new Collection();
 
 try {
     const reminders: Array<Reminder> = getReminders().all();
